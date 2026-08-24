@@ -19,20 +19,19 @@
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
-
 env:
-  AZURE_WEBAPP_NAME: your-app-name    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '14.x'                # set this to the node version to use
+  AZURE_WEBAPP_NAME: your-app-name # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '14.x' # set this to the node version to use
 
 permissions:
   contents: read
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-small-2c-4g
     steps:
     - uses: actions/checkout@v3
 
@@ -57,7 +56,7 @@ jobs:
   deploy:
     permissions:
       contents: none
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-small-2c-4g
     needs: build
     environment:
       name: 'Development'
